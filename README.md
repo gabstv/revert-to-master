@@ -1,4 +1,4 @@
-# no-more-masters
+# revert-to-master
 
 Rename your default Git branch from main to master.
 
