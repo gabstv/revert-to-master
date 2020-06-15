@@ -7,16 +7,16 @@ This script requires that you have [a GitHub authorization token](https://help.g
 ## Install
 
 ```
-$ npm install -g no-more-masters
+$ npm install -g revert-to-master
 ```
 
 ## Usage
 
 ```
-$ no-more-masters
+$ revert-to-master
 
 OPTIONS
-  -b, --branch=branch  [default: production] The branch name to create
+  -b, --branch=branch  [default: master] The branch name to create
   -h, --help           show CLI help
   -v, --version        show CLI version
 ```
