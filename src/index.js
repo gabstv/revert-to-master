@@ -5,9 +5,9 @@ const axios = require("axios");
 const parseRepo = require("parse-repo");
 const util = require("util");
 
-class NoMoreMastersCommand extends Command {
+class RevertMastersCommand extends Command {
   async init() {
-    var defaultBranch = "production";
+    var defaultBranch = "master";
     try {
       defaultBranch = (
         await execa("git", ["config", "--get", "core.defaultBranch"])
@@ -19,9 +19,9 @@ class NoMoreMastersCommand extends Command {
       }
     }
 
-    NoMoreMastersCommand.description = `Use this script to rename your default Git branch from 'master' to '${defaultBranch}'`;
+    RevertMastersCommand.description = `Use this script to rename your default Git branch from 'main' to '${defaultBranch}'`;
 
-    NoMoreMastersCommand.flags = {
+    RevertMastersCommand.flags = {
       version: flags.version({ char: "v" }),
       help: flags.help({ char: "h" }),
       branch: flags.string({
@@ -35,7 +35,7 @@ class NoMoreMastersCommand extends Command {
 
   async run() {
     this.init();
-    const { flags } = this.parse(NoMoreMastersCommand);
+    const { flags } = this.parse(RevertMastersCommand);
 
     // check branch
     const branch = flags.branch;
@@ -65,8 +65,8 @@ class NoMoreMastersCommand extends Command {
     }
 
     this.log(
-      `This script will create a new branch off of \`master\` called \`${branch}\`.\n\n` +
-        `It will then set \`${branch}\` as the default branch, and delete the \`master\` branch.\n` +
+      `This script will create a new branch off of \`main\` called \`${branch}\`.\n\n` +
+        `It will then set \`${branch}\` as the default branch, and delete the \`main\` branch.\n` +
         `\nThis will modify the \`${nwo}\` repository on ${host}.\n` +
         "\n*** These are DESTRUCTIVE actions! ***\n"
     );
@@ -90,7 +90,7 @@ class NoMoreMastersCommand extends Command {
     }
 
     try {
-      await execa("git", ["checkout", "-b", branch, "origin/master"]);
+      await execa("git", ["checkout", "-b", branch, "origin/main"]);
     } catch (error) {
       this.error(error);
     }
@@ -133,7 +133,7 @@ class NoMoreMastersCommand extends Command {
     }
 
     try {
-      const { stdout } = await execa("git", ["branch", "-D", "master"]);
+      const { stdout } = await execa("git", ["branch", "-D", "main"]);
       console.log(stdout);
     } catch (error) {
       this.error(error);
@@ -141,15 +141,15 @@ class NoMoreMastersCommand extends Command {
 
     this.log(`Deleting \`master\` on ${host} ...`);
     try {
-      await execa("git", ["push", "origin", ":master"]);
+      await execa("git", ["push", "origin", ":main"]);
     } catch (e) {
       this
-        .log(`\n*** I could not delete the master branch on GitHub! Probably because it has branch protection...
+        .log(`\n*** I could not delete the main branch on GitHub! Probably because it has branch protection...
 Here's what they said:\n${e}\n\n`);
     }
 
-    this.log(`\nAll done! PS: GitHub, drop ICE 🤗`);
+    this.log(`\nAll done! PS: GitHub, drop identity politics`);
   }
 }
 
-module.exports = NoMoreMastersCommand;
+module.exports = RevertMastersCommand;
