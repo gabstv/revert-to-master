@@ -1,7 +1,7 @@
 const { expect, test } = require("@oclif/test");
 const cmd = require("..");
 
-describe("no-more-masters", () => {
+describe("revert-to-master", () => {
   test
     .stdout()
     .do(() => cmd.run([]))
