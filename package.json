@@ -11,9 +11,11 @@
   ],
   "author": "Gabriel O.",
   "bin": {
-    "revert-to-master": "./bin/run"
+    "revert-to-master": "bin/run"
   },
-  "bugs": "https://github.com/gabstv/revert-to-master/issues",
+  "bugs": {
+    "url": "https://github.com/gabstv/revert-to-master/issues"
+  },
   "dependencies": {
     "@oclif/command": "^1.6.1",
     "@oclif/config": "^1.15.1",
@@ -49,11 +51,17 @@
   "homepage": "https://github.com/gabstv/revert-to-master",
   "license": "Unlicense",
   "main": "src/index.js",
-  "repository": "gabstv/revert-to-master",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabstv/revert-to-master.git"
+  },
   "scripts": {
     "posttest": "eslint .",
     "prepack": "oclif-dev readme",
     "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
     "version": "oclif-dev readme && git add README.md"
+  },
+  "directories": {
+    "test": "test"
   }
 }
