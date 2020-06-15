@@ -25,7 +25,7 @@ OPTIONS
 
 1. `git checkout -b master main`: Create a branch `master` from `main`
 2. `git push origin master`: Push that `master` branch to your remote
-3. Using [the GitHub API's Update a repository endpoint](https://developer.github.com/v3/repos/#update-a-repository), set `production` as the new default branch
+3. Using [the GitHub API's Update a repository endpoint](https://developer.github.com/v3/repos/#update-a-repository), set `master` as the new default branch
 4. `git branch -D main`: Removes `main` from your local machine
 5. `git push origin :main`: Removes `main` from your remote repository
 
